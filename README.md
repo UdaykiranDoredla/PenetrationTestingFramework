@@ -1,263 +1,109 @@
-# ZeroTrace: All-in-One Automated Penetration Testing System
-
-## Project Overview
-
-ZeroTrace is an all-in-one automated penetration testing system designed to integrate a variety of scanning, exploitation, and reporting tools into a single framework. It helps penetration testers and security professionals to conduct thorough and efficient vulnerability assessments, exploit vulnerabilities, and generate detailed reports of their findings.
-
-ZeroTrace includes:
-
-- **Network Scanning**: Scans for devices and services on a network.
-- **Web Application Security Scanning**: Scans websites for common vulnerabilities like SQL injection, XSS, and more.
-- **Exploit Module**: Leverages Metasploit to exploit vulnerabilities.
-- **Reporting**: Generates JSON, HTML, and PDF reports summarizing scan results.
-
-## Features
-
-- **Automated Vulnerability Scanning**: For network and web applications.
-- **Exploitation Module**: Uses Metasploit to attempt to exploit discovered vulnerabilities.
-- **Reporting System**: Generates detailed scan reports in multiple formats (JSON, HTML, PDF).
-- **Easy-to-Use Interface**: Simple command-line interaction for penetration testers.
-- **Extendable**: New modules and features can be easily integrated into the system.
-
-## Tools Integrated
-
-### 1. **Nmap** - Network Scanning
-   - Purpose: Performs network discovery and security auditing. Identifies devices, services, and vulnerabilities.
-   - Features: OS detection, version detection, and port scanning using stealth techniques (e.g., SYN scan).
-   - Integration: Used for discovering devices and services on a network, supporting detailed reconnaissance.
-
-### 2. **Nikto** - Web Application Security Scanning
-   - Purpose: An open-source web server scanner that detects vulnerabilities in web applications.
-   - Features: Scans for issues like outdated server software, vulnerable scripts, and misconfigurations.
-   - Integration: Used to scan websites for vulnerabilities, including SQL injection and XSS.
-
-### 3. **SQLMap** - SQL Injection Scanning
-   - Purpose: Automates the process of detecting and exploiting SQL injection vulnerabilities.
-   - Features: Detects and exploits SQL injections, enumerates databases, and dumps data.
-   - Integration: Used to scan web applications for SQL injection vulnerabilities and automate exploitation.
-
-### 4. **XSStrike** - Cross-Site Scripting (XSS) Scanning
-   - Purpose: Detects and exploits XSS vulnerabilities in web applications.
-   - Features: Advanced techniques for detecting and exploiting XSS vulnerabilities.
-   - Integration: Scans websites for potential XSS issues and attempts exploitation.
-
-### 5. **Metasploit Framework** - Exploit Module
-   - Purpose: A tool for developing and executing exploits against remote targets.
-   - Features: Automates the exploitation of vulnerabilities to gain unauthorized access.
-   - Integration: Uses Metasploit for exploiting identified vulnerabilities in networks and web applications.
-
-## Installation and Setup
-
-### System Requirements
-
-- **OS**: Ubuntu (or compatible Linux distribution)
-- **Python**: Python 3.x
-- **Required Tools**:
-  - **Nmap**: For network scanning and OS detection.
-  - **Nikto**: For web application vulnerability scanning.
-  - **SQLMap**: For SQL injection testing.
-  - **XSStrike**: For XSS vulnerability testing.
-  - **Metasploit Framework**: For exploitation.
-- **Dependencies**:
-  - Python libraries (e.g., subprocess, json, fpdf for generating reports)
-  - Install necessary tools like Nmap, SQLMap, XSStrike, Metasploit.
-
-### Install Dependencies
-
-1. **Clone the repository**:
-
-   ```bash
-   git clone https://github.com/LuckyStail/ZeroTrace.git
-
-2. **Install Python dependencies:**
-    python3 -m venv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
-
-3. **Install the tools: Nmap,SQLMap,XXStrike,Metasploit**
-    sudo apt install nmap
-    git clone https://github.com/sqlmapproject/sqlmap.git
-    git clone https://github.com/s0md3v/XSStrike.git
-
-4. **Setting Up the Exploit Module (Metasploit)**
-    msfdb init
-
-## File Structure
-
-    ZeroTrace/
-    │
-    ├── network_scanner.py         # Main scanner script
-    ├── sql_injection_scanner.py   # SQL injection scanning with SQLMap
-    ├── xss_scanner.py             # XSS scanning with XSStrike
-    ├── exploit_module.py          # Metasploit exploitation module
-    ├── report_generator.py        # For generating scan reports (JSON, HTML, PDF)
-    ├── README.md                  # Project documentation
-    ├── requirements.txt           # Python dependencies
-    └── scan_results/              # Directory for storing scan result files
-
-## Reporting
-
-    ZeroTrace generates detailed reports in multiple formats:
-
-    JSON: Machine-readable format for further analysis.
-    HTML: Human-readable format for viewing in a browser.
-    PDF: Portable format suitable for sharing.
-
-    Reports are automatically generated and saved in the scan_results/ directory after each scan. You can customize the report generation by modifying the report_generator.py script
-
-
-## Conclusion
-
-    ZeroTrace is a powerful, modular, and easy-to-use automated penetration testing system. It integrates various scanning and exploitation tools into a unified platform, providing an efficient and streamlined process for vulnerability discovery and exploitation.
-
-    By generating comprehensive reports in multiple formats, it simplifies the documentation process for penetration testers, making it an invaluable tool for both manual and automated testing.
-
-## Contributing
-
-    ZeroTrace is an open-source project, and contributions are welcome! If you'd like to contribute:
-
-    1. Fork the repository.
-    2. Make your changes.
-    3. Submit a pull request.
-
-
-## License 
-    This project is licensed under the MIT License. 
-
-
-
-### Explanation of Updates:
-
-- **Tools Integrated**:
-## 1 Nmap - Network Scanner
-📌 Purpose:
-
-   Nmap (Network Mapper) is used for network discovery, host detection, port scanning, and OS fingerprinting.
-   It identifies active hosts, running services, open ports, and their versions.
-   🔹 Features:
-   ✔ Fast and customizable network scanning
-   ✔ Detects open ports, services, and OS details
-   ✔ Supports stealth scanning techniques
-   
-   **🛠 Integration in ZeroTrace:**
-   
-   Used in the network_scanner.py module to scan single IPs, ranges, or entire subnets.
-   Utilizes -sS (stealth scan), -O (OS detection), -sV (service version detection), and --randomize-hosts for evasion.
-## 2 Nikto - Web Vulnerability Scanner
-📌 Purpose:
-
-   Scans websites for security misconfigurations and known vulnerabilities.
-   Detects outdated software, insecure HTTP headers, and common security flaws.
-   🔹 Features:
-   ✔ Detects over 6,700 vulnerabilities
-   ✔ Identifies outdated software versions
-   ✔ Scans HTTP headers, cookies, and SSL/TLS configurations
-   
-   **🛠 Integration in ZeroTrace:**
-   
-   Used in the web_scanner.py module to check for web application vulnerabilities.
-   Executes nikto -h <target> and parses the results.
-## 3 SQLmap - SQL Injection Testing
-📌 Purpose:
-
-   Automates the process of detecting and exploiting SQL injection vulnerabilities.
-   🔹 Features:
-   ✔ Supports multiple database types (MySQL, PostgreSQL, MSSQL, etc.)
-   ✔ Can extract database information, dump tables, and escalate privileges
-   ✔ Supports blind, time-based, and error-based injection techniques
-   
-   **🛠 Integration in ZeroTrace:**
-   
-   Used in the sql_scanner.py module to test for SQL vulnerabilities in web apps.
-   Executes sqlmap -u <target_url> --dbs --batch for automated testing.
-## 4 XSStrike - Cross-Site Scripting (XSS) Scanner
-📌 Purpose:
-
-   Detects and exploits XSS vulnerabilities in web applications.
-   🔹 Features:
-   ✔ Identifies both reflected and stored XSS attacks
-   ✔ Generates custom payloads to bypass WAFs
-   ✔ Uses AI-based detection methods
-   
-   **🛠 Integration in ZeroTrace:**
-   
-   Used in the xss_scanner.py module for automated web security assessments.
-   Executes xsstrike -u <target_url> -f to detect XSS vulnerabilities.
-## 5 Metasploit Framework - Exploitation Module
-📌 Purpose:
-
-   A powerful tool used for penetration testing and exploitation of vulnerabilities.
-   Provides various exploits, payloads, and post-exploitation modules.
-   🔹 Features:
-   ✔ Automated exploits for known vulnerabilities
-   ✔ Post-exploitation modules for privilege escalation
-   ✔ Can be combined with Nmap scans to target vulnerable services
-   
- **🛠 Integration in ZeroTrace:**
-   
-   Used in exploit_module.py to run Metasploit exploits against detected vulnerabilities.
-   Executes msfconsole -x "use exploit/multi/...; set RHOST <target>; exploit" for automated attacks.
-- **Installation and Setup**: Expanded to include steps for setting up all required dependencies, including Python dependencies and external tools like Nmap, SQLMap, XSStrike, and Metasploit.
-- **Usage Instructions**: Prerequisites
-
-Before running ZeroTrace, ensure you have the following installed:
-
-Python (Recommended: Python 3.x)
-
-Required dependencies (Install using pip install -r requirements.txt)
-
-Administrative privileges (some scans require root access)
-
-## Running ZeroTrace
-
-Clone the Repository (if not already done): git clone https://github.com/LuckyStail/ZeroTrace.git
-cd zerotrace
-
-2. Set Up the Virtual Environment (Recommended): python3 -m venv venv
-                                                 source venv/bin/activate  # Linux/macOS
-                                                 venv\Scripts\activate  # Windows
-
-3. Install Dependencies: pip install -r requirements.txt
-
-4.  Run ZeroTrace: python ZeroTrace.py
-
-## Choosing the Scan Type
-
-      After starting ZeroTrace, you will be prompted to choose a scan type:
-      
-      Network Scan - Identifies live hosts and open ports.
-      
-      Vulnerability Scan - Detects known vulnerabilities in target systems.
-      
-      Web Scan - Scans web applications for security flaws.
-      
-      Exploit Execution - Attempts known exploits against detected vulnerabilities.
-      
-      Custom Scan - Allows user-defined scanning parameters.
-
-
-## Setting Scan Options
-
-      Each scan type has specific options you can configure:
-      
-      Target IP/Domain: Provide the IP address or domain of the target.
-      
-      Port Range: Specify ports to scan (e.g., 80,443 or 1-65535).
-      
-      Scan Depth: Choose between a quick scan or an in-depth analysis.
-      
-      Output Format: Select output type (text, JSON, or HTML report).
-
-## Viewing Reports
-
-      Scan results are stored in the reports/ directory. Open the report file using: cat reports/scan_results.txt  # Text output
-jq . reports/scan_results.json  # JSON output
-firefox reports/scan_results.html  # HTML output
-
-## Conclusion
-
-ZeroTrace is a powerful, all-in-one pentesting tool designed to streamline security assessments. With its automated scanning, vulnerability detection, and exploit execution capabilities, it provides security professionals with a comprehensive suite for penetration testing. Whether you're conducting quick reconnaissance or deep security analysis, ZeroTrace equips you with the necessary tools to uncover and address potential threats efficiently.
-
-
-
-Feel free to modify and expand the `README.md` as needed to reflect any additional functionality or updates in your project.
+<h1 align="center">
+  <br>
+  <a href="https://github.com/s0md3v/XSStrike"><img src="https://image.ibb.co/cpuYoA/xsstrike-logo.png" alt="XSStrike"></a>
+  <br>
+  XSStrike
+  <br>
+</h1>
+
+<h4 align="center">Advanced XSS Detection Suite</h4>
+
+<p align="center">
+  <a href="https://github.com/s0md3v/XSStrike/releases">
+    <img src="https://img.shields.io/github/release/s0md3v/XSStrike.svg">
+  </a>
+  <a href="https://travis-ci.com/s0md3v/XSStrike">
+    <img src="https://img.shields.io/travis/com/s0md3v/XSStrike.svg">
+  </a>
+  <a href="https://github.com/s0md3v/XSStrike/issues?q=is%3Aissue+is%3Aclosed">
+      <img src="https://img.shields.io/github/issues-closed-raw/s0md3v/XSStrike.svg">
+  </a>
+</p>
+
+![multi xss](https://image.ibb.co/gOCV5L/Screenshot-2018-11-19-13-33-49.png)
+
+<p align="center">
+  <a href="https://github.com/s0md3v/XSStrike/wiki">XSStrike Wiki</a> •
+  <a href="https://github.com/s0md3v/XSStrike/wiki/Usage">Usage</a> •
+  <a href="https://github.com/s0md3v/XSStrike/wiki/FAQ">FAQ</a> •
+  <a href="https://github.com/s0md3v/XSStrike/wiki/For-Developers">For Developers</a> •
+  <a href="https://github.com/s0md3v/XSStrike/wiki/Compatibility-&-Dependencies">Compatibility</a> •
+  <a href="https://github.com/s0md3v/XSStrike#gallery">Gallery</a>
+</p>
+
+XSStrike is a Cross Site Scripting detection suite equipped with four hand written parsers, an intelligent payload generator, a powerful fuzzing engine and an incredibly fast crawler.
+
+Instead of injecting payloads and checking it works like all the other tools do, XSStrike analyses the response with multiple parsers and then crafts payloads that are guaranteed to work by context analysis integrated with a fuzzing engine.
+Here are some examples of the payloads generated by XSStrike:
+```
+}]};(confirm)()//\
+<A%0aONMouseOvER%0d=%0d[8].find(confirm)>z
+</tiTlE/><a%0donpOintErentER%0d=%0d(prompt)``>z
+</SCRiPT/><DETAILs/+/onpoINTERenTEr%0a=%0aa=prompt,a()//
+```
+Apart from that, XSStrike has crawling, fuzzing, parameter discovery, WAF detection capabilities as well. It also scans for DOM XSS vulnerabilities.
+
+### Sponsored By
+Website: [https://iproyal.com/?r=800974](https://iproyal.com/?r=800974)
+
+<a href="https://iproyal.com/?r=800974"><img src="https://raw.githubusercontent.com/s0md3v/s0md3v.github.io/refs/heads/main/imgs/inline/iproyal.png"></a>
+
+### Main Features
+- Reflected and DOM XSS scanning
+- Multi-threaded crawling
+- Context analysis
+- Configurable core
+- WAF detection & evasion
+- Outdated JS lib scanning
+- Intelligent payload generator
+- Handmade HTML & JavaScript parser
+- Powerful fuzzing engine
+- Blind XSS support
+- Highly researched work-flow
+- Complete HTTP support
+- Bruteforce payloads from a file
+- Powered by [Photon](https://github.com/s0md3v/Photon), [Zetanize](https://github.com/s0md3v/zetanize) and [Arjun](https://github.com/s0md3v/Arjun)
+- Payload Encoding
+
+### Documentation
+- [Usage](https://github.com/s0md3v/XSStrike/wiki/Usage)
+- [Compatibility & Dependencies](https://github.com/s0md3v/XSStrike/wiki/Compatibility-&-Dependencies)
+
+### FAQ
+- [It says fuzzywuzzy isn't installed but it is.](https://github.com/s0md3v/XSStrike/wiki/FAQ#it-says-fuzzywuzzy-is-not-installed-but-its)
+- [What's up with Blind XSS?](https://github.com/s0md3v/XSStrike/wiki/FAQ#whats-up-with-blind-xss)
+- [Why XSStrike boasts that it is the most advanced XSS detection suite?](https://github.com/s0md3v/XSStrike/wiki/FAQ#why-xsstrike-boasts-that-it-is-the-most-advanced-xss-detection-suite)
+- [I like the project, what enhancements and features I can expect in future?](https://github.com/s0md3v/XSStrike/wiki/FAQ#i-like-the-project-what-enhancements-and-features-i-can-expect-in-future)
+- [What's the false positive/negative rate?](https://github.com/s0md3v/XSStrike/wiki/FAQ#whats-the-false-positivenegative-rate)
+- [Tool xyz works against the target, while XSStrike doesn't!](https://github.com/s0md3v/XSStrike/wiki/FAQ#tool-xyz-works-against-the-target-while-xsstrike-doesnt)
+- [Can I copy it's code?](https://github.com/s0md3v/XSStrike/wiki/FAQ#can-i-copy-its-code)
+- [What if I want to embed it into a proprietary software?](https://github.com/s0md3v/XSStrike/wiki/FAQ#what-if-i-want-to-embed-it-into-a-proprietary-software)
+
+### Gallery
+#### DOM XSS
+![dom xss](https://image.ibb.co/bQaQ5L/Screenshot-2018-11-19-13-48-19.png)
+#### Reflected XSS
+![multi xss](https://image.ibb.co/gJogUf/Screenshot-2018-11-19-14-19-36.png)
+#### Crawling
+![crawling](https://image.ibb.co/e6Rezf/Screenshot-2018-11-19-13-50-59.png)
+#### Fuzzing
+![fuzzing](https://image.ibb.co/fnhuFL/Screenshot-2018-11-19-14-04-46.png)
+#### Bruteforcing payloads from a file
+![bruteforcing](https://image.ibb.co/dy5EFL/Screenshot-2018-11-19-14-08-36.png)
+#### Interactive HTTP Headers Prompt
+![headers](https://image.ibb.co/ecNph0/Screenshot-2018-11-19-14-29-35.png)
+#### Hidden Parameter Discovery
+![arjun](https://image.ibb.co/effjh0/Screenshot-2018-11-19-14-16-51.png)
+
+### Contribution, Credits & License
+Ways to contribute
+- Suggest a feature
+- Report a bug
+- Fix something and open a pull request
+- Help me document the code
+- Spread the word
+
+Licensed under the GNU GPLv3, see [LICENSE](LICENSE) for more information.
+
+The WAF signatures in `/db/wafSignatures.json` are taken & modified from [sqlmap](https://github.com/sqlmapproject/sqlmap). I extracted them from sqlmap's waf detection modules which can found [here](https://github.com/sqlmapproject/sqlmap/blob/master/waf/) and converted them to JSON.\
+`/plugins/retireJS.py` is a modified version of [retirejslib](https://github.com/FallibleInc/retirejslib/).
